@@ -1,9 +1,11 @@
 import React from "react";
+import styles from "./Noise.module.css";
 
 interface Props {
   isTimerStarted: boolean;
 }
 
+// TODO: refactor component
 export const Noise: React.FC<Props> = ({ isTimerStarted }) => {
   const [gain, setGain] = React.useState<any>(null);
   const audioCtx = React.useMemo(() => {
@@ -13,6 +15,7 @@ export const Noise: React.FC<Props> = ({ isTimerStarted }) => {
   }, []);
 
   const generateBrownNoise = React.useCallback((audioCtx) => {
+    // ! code from internet
     const bufferSize = 4096;
     const processorNode = audioCtx.createScriptProcessor(bufferSize, 1, 1);
 
@@ -25,6 +28,7 @@ export const Noise: React.FC<Props> = ({ isTimerStarted }) => {
 
         output[i] = (lastOut + 0.02 * white) / 1.02;
         lastOut = output[i];
+
         output[i] *= 3.5; // (roughly) compensate for gain
       }
     };
@@ -45,7 +49,7 @@ export const Noise: React.FC<Props> = ({ isTimerStarted }) => {
   React.useEffect(() => {
     const gainNode = audioCtx.createGain();
     gainNode.connect(audioCtx.destination);
-    gainNode.gain.value = 0;
+    gainNode.gain.value = 3; // dafault volume value
     setGain(gainNode.gain);
 
     const brownNoise = generateBrownNoise(audioCtx);
@@ -69,17 +73,16 @@ export const Noise: React.FC<Props> = ({ isTimerStarted }) => {
   }, [isTimerStarted, turnOffNoise, turnOnNoise]);
 
   return (
-    <div>
-      <label>
-        Громкость
-        <input
-          onChange={handleVolumeChange}
-          type="range"
-          name="volume"
-          min="0"
-          max="10"
-        />
-      </label>
-    </div>
+    <label className={styles["volume-control"]}>
+      Громкость
+      <input
+        onChange={handleVolumeChange}
+        value={gain?.value || 0}
+        className={styles["slider"]}
+        type="range"
+        min="0"
+        max="10"
+      />
+    </label>
   );
 };

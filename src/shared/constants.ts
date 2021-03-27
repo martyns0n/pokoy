@@ -11,3 +11,13 @@ export const fibonacciColors = [
   "#ab9df2ff",
   "#ffffffff",
 ];
+
+export const fibNumToColorMap = {
+  [fibonacciNumsForTimer[0]]: fibonacciColors[0],
+  [fibonacciNumsForTimer[1]]: fibonacciColors[1],
+  [fibonacciNumsForTimer[2]]: fibonacciColors[2],
+  [fibonacciNumsForTimer[3]]: fibonacciColors[3],
+  [fibonacciNumsForTimer[4]]: fibonacciColors[4],
+  [fibonacciNumsForTimer[5]]: fibonacciColors[5],
+  [fibonacciNumsForTimer[6]]: fibonacciColors[6],
+};

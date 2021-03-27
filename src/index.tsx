@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Home from "./features/Home/Home";
+import { Home } from "./features";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import "./global.css";
