@@ -49,9 +49,8 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
   }, [minutesRemain, seconds, secondsRemain]);
 
   return (
-    <div>
-      До следующего этапа:{" "}
-      <span className={styles.countdown}>{timeRemain}</span>
-    </div>
+    <span className={styles.countdown} title="Времени до следующего этапа">
+      {timeRemain}
+    </span>
   );
 };

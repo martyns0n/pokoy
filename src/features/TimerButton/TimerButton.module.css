@@ -1,0 +1,8 @@
+.timer-button.timer-button {
+  background-color: teal;
+  width: 128px;
+}
+
+.timer-button-started.timer-button-started {
+  background-color: tomato;
+}

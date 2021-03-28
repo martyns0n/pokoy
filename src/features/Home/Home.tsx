@@ -4,12 +4,11 @@ import {
   Header,
   TimerButton,
   Countdown,
-  Noise,
+  // Noise,
   // Stats,
 } from "features";
-// import { getFibonacciDiscrete } from "shared/utils";
 import styles from "./Home.module.css";
-// import { StatsData } from "shared/types";
+// import { writeSessionToStore } from "./writeSessionToStore"
 
 // TODO: refactor this component
 export const Home: React.FC = () => {
@@ -39,25 +38,6 @@ export const Home: React.FC = () => {
     setCurrentTimerId(timerId);
   }, []);
 
-  // const writeSessionToStore = React.useCallback((seconds) => {
-  //   const dateObj = new Date();
-  //   const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-  //   const day = String(dateObj.getDate()).padStart(2, "0");
-  //   const year = dateObj.getFullYear();
-  //   const date = `${year}-${month}-${day}`;
-
-  //   const totalTime = getFibonacciDiscrete(seconds / 60);
-
-  //   const dataString = localStorage.getItem("stats") ?? "{}";
-  //   const statsData: StatsData = JSON.parse(dataString);
-  //   const item = statsData[date] || [];
-  //   const newItem = [...item, totalTime];
-  //   const newData = { ...statsData, [date]: newItem };
-
-  //   const newDataString = JSON.stringify(newData);
-  //   localStorage.setItem("stats", newDataString);
-  // }, []);
-
   const handleTimerClick = React.useCallback(() => {
     setTimerDiff(0);
 
@@ -83,15 +63,21 @@ export const Home: React.FC = () => {
 
   return (
     <main className={styles["app-wrapper"]}>
-      <Header />
+      {/* <Header /> */}
+      <p>
+        <TimerButton
+          handleTimerClick={handleTimerClick}
+          isTimerStarted={isStarted}
+        />
+        <p>
+          <Countdown seconds={timerDiff} />
+        </p>
+      </p>
+      <div className={styles["progress-spiral-wrapper"]}>
+        <FibonacciProgress value={timerDiff} />
+      </div>
       {/* <Stats sessionsData={sessionsData} /> */}
       {/* <Noise isTimerStarted={isStarted}/> */}
-      <TimerButton
-        handleTimerClick={handleTimerClick}
-        isTimerStarted={isStarted}
-      />
-      <FibonacciProgress value={timerDiff} />
-      <Countdown seconds={timerDiff} />
     </main>
   );
 };

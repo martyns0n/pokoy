@@ -3,4 +3,10 @@
   flex-direction: column;
   flex: 1 1 auto;
   height: 100%;
+  text-align: center;
+}
+
+.progress-spiral-wrapper {
+  display: flex;
+  justify-content: center;
 }

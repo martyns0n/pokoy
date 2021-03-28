@@ -1,4 +1,7 @@
 .countdown {
+  margin: 16px;
   font-family: monospace;
   font-size: xx-large;
+  cursor: help;
+  color: thistle;
 }

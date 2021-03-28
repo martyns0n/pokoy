@@ -12,10 +12,11 @@ interface Props {
   progress: number;
 }
 
+// TODO: refactor component
 export const ProgressDrawer: React.FC<Props> = ({ progress }) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
-  const canvasSize = 2520;
+  const canvasSize = 2520; // WTF, why 2520?
   const halfSize = canvasSize / 2;
 
   const center = React.useMemo(() => {
@@ -69,19 +70,17 @@ export const ProgressDrawer: React.FC<Props> = ({ progress }) => {
 
   React.useEffect(() => {
     const firstPoint = { x: 0, y: 0 };
-    const secondPoint = { x: -2.17, y: -2.17 };
+    const secondPoint = { x: -2.17, y: -2.17 }; // rough value for nice spiral angle
 
     drawFibonacciProgression(firstPoint, secondPoint);
   }, [center.x, center.y, drawFibonacciProgression, progress]);
 
   return (
-    <div className={styles.wrapper}>
-      <canvas
-        ref={canvasRef}
-        width={canvasSize}
-        height={canvasSize}
-        className={styles.canvas}
-      ></canvas>
-    </div>
+    <canvas
+      ref={canvasRef}
+      width={canvasSize}
+      height={canvasSize}
+      className={styles.canvas}
+    ></canvas>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./TimerButton.module.css";
 
 type Props = {
   isTimerStarted: boolean;
@@ -9,13 +10,18 @@ export const TimerButton: React.FC<Props> = ({
   isTimerStarted = false,
   handleTimerClick,
 }) => {
-  const buttonText = isTimerStarted ? "Закончить" : "Начать";
+  const buttonText = isTimerStarted ? "End" : "Start";
+  const buttonClassNames = `${styles["timer-button"]} ${
+    isTimerStarted ? styles["timer-button-started"] : null
+  }`;
 
   return (
-    <p>
-      <button type="button" onClick={handleTimerClick}>
-        {buttonText}
-      </button>
-    </p>
+    <button
+      className={buttonClassNames}
+      type="button"
+      onClick={handleTimerClick}
+    >
+      {buttonText}
+    </button>
   );
 };
